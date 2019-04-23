@@ -16,6 +16,8 @@ class LaunchesBloc extends Bloc<LaunchEvent, LaunchState> {
     if(event == LaunchEvent.FETCH) {
       try {
         var launches = await _fetchLaunches();
+        launches.sort((l1, l2) => l2.launchDate.compareTo(l1.launchDate));
+        
         yield LaunchStateLoaded(launches: launches);
       } catch (e) {
         yield LaunchStateFailed();
