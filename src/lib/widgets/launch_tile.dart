@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:speis_eks/models/launch.dart';
+import 'package:speis_eks/pages/launch_detail_page.dart';
 
 class LaunchTile extends StatelessWidget {
   final Launch launch;
@@ -27,6 +28,16 @@ class LaunchTile extends StatelessWidget {
         maxLines: 3,
       ),
       trailing: Icon(Icons.arrow_forward),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => LaunchDetailPage(
+                  launch: launch,
+                ),
+          ),
+        );
+      },
       isThreeLine: true,
     );
   }
