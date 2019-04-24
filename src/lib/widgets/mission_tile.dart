@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:speis_eks/models/mission.dart';
+import 'package:speis_eks/pages/mission_detail_page.dart';
 
 class MissionTile extends StatelessWidget {
   final Mission mission;
@@ -9,22 +10,30 @@ class MissionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      padding: EdgeInsets.all(10.0),
-      color: Theme.of(context).backgroundColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+    return ListTile(
+      onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => MissionDetailPage(
+                    mission: mission,
+                  ),
+            ),
+          ),
+      isThreeLine: true,
+      contentPadding: EdgeInsets.all(10.0),
+      title: Text(
+        mission.name,
+        style: Theme.of(context).textTheme.title,
+      ),
+      subtitle: Text(
+        mission.description,
+        style: Theme.of(context).textTheme.body1,
+        maxLines: 3,
+      ),
+      trailing: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            mission.name,
-            style: Theme.of(context).textTheme.title,
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            mission.description,
-            style: Theme.of(context).textTheme.body1,
-          ),
+          Icon(Icons.keyboard_arrow_right),
         ],
       ),
     );
