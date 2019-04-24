@@ -13,10 +13,6 @@ class LaunchesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Launches"),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
-        onPressed: () => launchesBloc.dispatch(LaunchEvent.FETCH),
-      ),
       body: BlocBuilder(
         bloc: launchesBloc,
         builder: (context, LaunchState state) {
@@ -28,9 +24,11 @@ class LaunchesPage extends StatelessWidget {
             } else {
               return ListView.builder(
                 itemCount: state.launches.length,
-                itemBuilder: (ctx, index) => LaunchTile(
-                      launch: state.launches[index],
-                    ),
+                itemBuilder: (ctx, index) {
+                  return LaunchTile(
+                    launch: state.launches[index],
+                  );
+                },
               );
             }
           }

@@ -14,10 +14,6 @@ class MissionsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Missions"),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
-        onPressed: () => _missionsBloc.dispatch(MissionEvent.FETCH),
-      ),
       body: BlocBuilder(
         bloc: _missionsBloc,
         builder: (context, MissionState state) {
