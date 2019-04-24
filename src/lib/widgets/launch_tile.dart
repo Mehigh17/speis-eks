@@ -27,7 +27,6 @@ class LaunchTile extends StatelessWidget {
         style: Theme.of(context).textTheme.body1,
         maxLines: 3,
       ),
-      trailing: Icon(Icons.arrow_forward),
       onTap: () {
         Navigator.push(
           context,
