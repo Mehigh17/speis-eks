@@ -35,7 +35,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  
   int _currentScreenIndex;
 
   /// Initializes the main screen state at the given screen index
@@ -70,4 +69,13 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    widget.screens.forEach((screen) {
+      if (screen is BlocProvider) {
+        screen.bloc.dispose();
+      }
+    });
+  }
 }
