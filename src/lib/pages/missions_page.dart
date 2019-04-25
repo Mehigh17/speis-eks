@@ -23,11 +23,12 @@ class MissionsPage extends StatelessWidget {
                 child: Text("No missions found."),
               );
             } else {
-              return ListView.builder(
+              return ListView.separated(
                 itemCount: state.missions.length,
                 itemBuilder: (ctx, index) => MissionTile(
                       mission: state.missions[index],
                     ),
+                separatorBuilder: (ctx, index) => Divider(height: 2, color: Colors.black,),
               );
             }
           }

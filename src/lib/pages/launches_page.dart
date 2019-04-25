@@ -22,13 +22,14 @@ class LaunchesPage extends StatelessWidget {
                 child: Text("No launches found."),
               );
             } else {
-              return ListView.builder(
+              return ListView.separated(
                 itemCount: state.launches.length,
                 itemBuilder: (ctx, index) {
                   return LaunchTile(
                     launch: state.launches[index],
                   );
                 },
+                separatorBuilder: (ctx, index) => Divider(height: 2, color: Colors.black,),
               );
             }
           }
