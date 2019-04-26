@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:speis_eks/blocs/payloads_bloc.dart';
 import 'package:speis_eks/models/mission.dart';
 import 'package:speis_eks/pages/mission_detail_page.dart';
 
@@ -14,9 +16,14 @@ class MissionTile extends StatelessWidget {
       onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (ctx) => MissionDetailPage(
+              builder: (ctx) {
+                return BlocProvider(
+                  child: MissionDetailPage(
                     mission: mission,
                   ),
+                  bloc: PayloadsBloc(),
+                );
+              },
             ),
           ),
       isThreeLine: true,
