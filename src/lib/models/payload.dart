@@ -13,10 +13,10 @@ class Payload extends Equatable {
   final String type;
 
   /// Payload weight in kilograms.
-  final double massKg;
+  final int massKg;
 
   /// Payload weight in pounds.
-  final double massLbs;
+  final int massLbs;
 
   final String orbit;
 
@@ -37,15 +37,16 @@ class Payload extends Equatable {
 
   factory Payload.fromJson(Map<String, dynamic> json) {
     return Payload(
-        id: json["payload_id"],
-        reused: json["reused"],
-        customers: List<String>.from(json["customers"]),
-        nationality: json["nationality"],
-        manufacturer: json["manufacturer"],
-        type: json["payload_type"],
-        massKg: json["payload_mass_kg"],
-        massLbs: json["payload_mass_lbs"],
-        orbit: json["orbit"],
-        orbitParams: OrbitParams.fromJson(json["orbit_params"]));
+      id: json["payload_id"],
+      reused: json["reused"],
+      customers: List<String>.from(json["customers"]) ?? <List>[],
+      nationality: json["nationality"],
+      manufacturer: json["manufacturer"],
+      type: json["payload_type"],
+      massKg: int.tryParse(json["payload_mass_kg"].toString()),
+      massLbs: int.tryParse(json["payload_mass_lbs"].toString()),
+      orbit: json["orbit"],
+      orbitParams: OrbitParams.fromJson(json["orbit_params"]),
+    );
   }
 }

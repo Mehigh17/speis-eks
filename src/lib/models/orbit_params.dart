@@ -49,18 +49,19 @@ class OrbitParams {
 
   factory OrbitParams.fromJson(Map<String, dynamic> json) {
     return OrbitParams(
-        referenceSystem: json["reference_system"],
-        regime: json["regime"],
-        longitude: double.parse(json["longitude"]),
-        semiMajorAxis: double.parse(json["semi_major_axis_km"]),
-        eccentricity: double.parse(json["eccentricity"]),
-        periapsis: double.parse(json["periapsis_km"]),
-        apoapsis: double.parse(json["apoapsis_km"]),
-        inclination: double.parse(json["inclination_deg"]),
-        period: double.parse(json["period_min"]),
-        lifespan: double.parse(json["lifespan_years"]),
-        epoch: DateTime.parse(json["epoch"]),
-        meanMotion: double.parse(json["mean_motion"]),
-        raan: double.parse(json["raan"]));
+      referenceSystem: json["reference_system"],
+      regime: json["regime"],
+      longitude: double.tryParse(json["longitude"].toString()),
+      semiMajorAxis: double.tryParse(json["semi_major_axis_km"].toString()),
+      eccentricity: double.tryParse(json["eccentricity"].toString()),
+      periapsis: double.tryParse(json["periapsis_km"].toString()),
+      apoapsis: double.tryParse(json["apoapsis_km"].toString()),
+      inclination: double.tryParse(json["inclination_deg"].toString()),
+      period: double.tryParse(json["period_min"].toString()),
+      lifespan: double.tryParse(json["lifespan_years"].toString()),
+      epoch: DateTime.tryParse(json["epoch"].toString()),
+      meanMotion: double.tryParse(json["mean_motion"].toString()),
+      raan: double.tryParse(json["raan"].toString()),
+    );
   }
 }
