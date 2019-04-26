@@ -40,7 +40,7 @@ class MissionsPage extends StatelessWidget {
           }
 
           if (state is MissionStateUninitialized) {
-            _missionsBloc.dispatch(MissionEvent.FETCH);
+            _missionsBloc.dispatch(FetchMissionsEvent());
             return Center(
               child: CircularProgressIndicator(),
             );
