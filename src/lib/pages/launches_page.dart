@@ -22,11 +22,12 @@ class LaunchesPage extends StatelessWidget {
                 child: Text("No launches found."),
               );
             } else {
+              var validLaunches = state.launches.where((l) => l.launchDate.isBefore(DateTime.now())).toList();
               return ListView.separated(
-                itemCount: state.launches.length,
+                itemCount: validLaunches.length,
                 itemBuilder: (ctx, index) {
                   return LaunchTile(
-                    launch: state.launches[index],
+                    launch: validLaunches[index],
                   );
                 },
                 separatorBuilder: (ctx, index) => Divider(height: 2, color: Colors.black,),
