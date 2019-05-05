@@ -11,6 +11,30 @@ class PayloadTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> payloadInformation = [
+      "Made by ${payload.manufacturer}",
+      "Weight: ${payload.massKg}kg (${payload.massLbs}lbs)",
+      "Is reused: ${payload.reused ? 'Yes' : 'No'}",
+      "Payload type: ${payload.type}",
+      "Nationality: ${payload.nationality}",
+      "Customers: ${payload.customers.join(', ')}",
+      "Orbit lifespan: ${payload.orbitParams.lifespan} years",
+      "Orbit period: ${payload.orbitParams.period} minutes",
+      "Orbit regime: ${payload.orbitParams.regime}",
+    ];
+
+    List<Widget> displayWidgets = [
+      Text(
+        payload.id,
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.title,
+      ),
+    ];
+
+    payloadInformation.asMap().forEach((i, s) {
+      displayWidgets.add(i % 2 == 0 ? _evenRow(Text(s)) : _oddRow(Text(s)));
+    });
+
     return Container(
       margin: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
@@ -25,25 +49,7 @@ class PayloadTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              payload.id,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.title,
-            ),
-            _evenRow(Text("Made by ${payload.manufacturer}")),
-            _oddRow(
-                Text("Weight: ${payload.massKg}kg (${payload.massLbs}lbs)")),
-            _evenRow(Text("Is reused: ${payload.reused ? 'Yes' : 'No'}")),
-            _oddRow(Text("Payload type: ${payload.type}")),
-            _evenRow(Text("Nationality: ${payload.nationality}")),
-            _oddRow(Text("Customers: ${payload.customers.join(', ')}")),
-            _evenRow(
-                Text("Orbit lifespan: ${payload.orbitParams.lifespan} years")),
-            _oddRow(
-                Text("Orbit period: ${payload.orbitParams.period} minutes")),
-            _evenRow(Text("Orbit regime: ${payload.orbitParams.regime}"))
-          ],
+          children: displayWidgets,
         ),
       ),
     );
