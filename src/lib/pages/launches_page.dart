@@ -23,14 +23,13 @@ class LaunchesPage extends StatelessWidget {
               );
             } else {
               var validLaunches = state.launches.where((l) => l.launchDate.isBefore(DateTime.now())).toList();
-              return ListView.separated(
+              return ListView.builder(
                 itemCount: validLaunches.length,
                 itemBuilder: (ctx, index) {
                   return LaunchTile(
                     launch: validLaunches[index],
                   );
                 },
-                separatorBuilder: (ctx, index) => Divider(height: 2, color: Colors.black,),
               );
             }
           }

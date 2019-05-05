@@ -10,34 +10,43 @@ class LaunchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.all(10.0),
-      leading: SizedBox(
-        child: launch.links.missionPatch != null
-            ? Image.network(launch.links.missionPatch)
-            : Icon(Icons.texture),
-        width: 50.0,
+    return Container(
+      margin: EdgeInsets.all(5.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          color: Colors.white,
+          boxShadow: <BoxShadow>[
+            BoxShadow(blurRadius: 1.0, color: Colors.black38)
+          ]),
+      child: ListTile(
+        contentPadding: EdgeInsets.all(10.0),
+        leading: SizedBox(
+          child: launch.links.missionPatch != null
+              ? Image.network(launch.links.missionPatch)
+              : Icon(Icons.texture),
+          width: 50.0,
+        ),
+        title: Text(
+          launch.missionName,
+          style: Theme.of(context).textTheme.title,
+        ),
+        subtitle: Text(
+          launch.details ?? "No mission details.",
+          style: Theme.of(context).textTheme.body1,
+          maxLines: 3,
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => LaunchDetailPage(
+                    launch: launch,
+                  ),
+            ),
+          );
+        },
+        isThreeLine: true,
       ),
-      title: Text(
-        launch.missionName,
-        style: Theme.of(context).textTheme.title,
-      ),
-      subtitle: Text(
-        launch.details ?? "No mission details.",
-        style: Theme.of(context).textTheme.body1,
-        maxLines: 3,
-      ),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (ctx) => LaunchDetailPage(
-                  launch: launch,
-                ),
-          ),
-        );
-      },
-      isThreeLine: true,
     );
   }
 }
