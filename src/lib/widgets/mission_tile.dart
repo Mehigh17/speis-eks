@@ -12,36 +12,49 @@ class MissionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (ctx) {
-                return BlocProvider(
-                  child: MissionDetailPage(
-                    mission: mission,
-                  ),
-                  bloc: PayloadsBloc(),
-                );
-              },
+    return Container(
+      margin: EdgeInsets.all(5.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+        color: Colors.white,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            blurRadius: 1.0,
+            color: Colors.black38
+          )
+        ]
+      ),
+      child: ListTile(
+        onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (ctx) {
+                  return BlocProvider(
+                    child: MissionDetailPage(
+                      mission: mission,
+                    ),
+                    bloc: PayloadsBloc(),
+                  );
+                },
+              ),
             ),
-          ),
-      isThreeLine: true,
-      contentPadding: EdgeInsets.all(10.0),
-      title: Text(
-        mission.name,
-        style: Theme.of(context).textTheme.title,
-      ),
-      subtitle: Text(
-        mission.description,
-        style: Theme.of(context).textTheme.body1,
-        maxLines: 3,
-      ),
-      trailing: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(Icons.keyboard_arrow_right),
-        ],
+        isThreeLine: true,
+        contentPadding: EdgeInsets.all(10.0),
+        title: Text(
+          mission.name,
+          style: Theme.of(context).textTheme.title,
+        ),
+        subtitle: Text(
+          mission.description,
+          style: Theme.of(context).textTheme.body1,
+          maxLines: 3,
+        ),
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.keyboard_arrow_right),
+          ],
+        ),
       ),
     );
   }
